@@ -10,7 +10,4 @@ function createImage(category, productId) {
 
   const query = imageQueries[category] || "fashion";
 
-  return `https://loremflickr.com/700/800/${encodeURIComponent(query)}?lock=${productId}`;
-}
-  
- 
+ return `https://loremflickr.com/700/800/${query}?lock=${productId}`;
