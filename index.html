@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StyleNest — Fashion Store</title>
+  <meta name="description" content="StyleNest fashion store for women, men, boys and footwear." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-mark">SN</span><span><b>StyleNest</b><small>Fashion for Everyone</small></span></a>
+    <div class="search-wrap"><input id="searchInput" placeholder="Search tops, dresses, jeans, shoes..." /><button id="searchBtn">⌕</button></div>
+    <nav class="actions"><button id="accountBtn">Account</button><button id="wishlistBtn">♡ Wishlist</button><button id="cartBtn">🛒 Cart <span id="cartCount">0</span></button></nav>
+  </header>
+  <nav class="nav"><a href="#">Home</a><a href="#women">Women</a><a href="#men">Men</a><a href="#boys">Boys</a><a href="#shoes">Shoes</a><a href="#new">New Arrivals</a><a href="#offers">Offers</a></nav>
+
+  <main>
+    <section class="hero"><div><p class="eyebrow">NEW SEASON</p><h1>Trendy fashion,<br><span>made for you.</span></h1><p>Explore new tops, model dresses, everyday styles and footwear.</p><button class="primary" onclick="setCategory('Women')">Shop Women</button></div><div class="hero-art"><div class="dress dress-a"></div><div class="dress dress-b"></div><div class="dress dress-c"></div></div></section>
+
+    <section class="chips" id="women"><button onclick="setCategory('All')">All</button><button onclick="setCategory('Women')">Girls 10K</button><button onclick="setCategory('Sarees')">Sarees</button><button onclick="setCategory('Men')">Men</button><button onclick="setCategory('Boys')">Boys 10K</button><button onclick="setCategory('Shoes')">Shoes</button><button onclick="setCollection('Kurtis & Kurta Sets')">Kurtis</button><button onclick="setCollection('Lehenga & Festive')">Lehengas</button><button onclick="setCollection('Women Western')">Western</button><button onclick="setCollection('Sneakers & Casual Shoes')">Sneakers</button><button onclick="setCollection('Budget Finds')">Under ₹999</button><button onclick="setCollection('New Arrivals')">New Arrivals</button></section>
+
+    <section class="shop" id="new">
+      <aside class="filters"><div class="filter-head"><h3>Filters</h3><button onclick="clearFilters()">Clear</button></div><label>Category</label><select id="categoryFilter"><option>All</option><option>Women</option><option>Sarees</option><option>Men</option><option>Boys</option><option>Shoes</option></select><label>Collection</label><select id="collectionFilter"><option>All</option><option>Girls Mega Collection</option><option>Boys Mega Collection</option><option>Saree Collection</option><option>Wedding & Bridal</option><option>Lehenga & Festive</option><option>Kurtis & Kurta Sets</option><option>Floral Edit</option><option>Co-ord Central</option><option>Party Glam</option><option>Office Chic</option><option>Daily Wear</option><option>Vacation & Resort</option><option>Women Western</option><option>Women Night & Lounge</option><option>Plus Size Edit</option><option>Denim & Cargo</option><option>Men Ethnic</option><option>Men Western</option><option>Kids Girls</option><option>Kids Boys</option><option>Kids Party</option><option>Kids Casual</option><option>Sports & Active</option><option>Sneakers & Casual Shoes</option><option>Heels & Flats</option><option>Formal & Loafers</option><option>Footwear Deals</option><option>Under ₹799</option><option>Budget Finds</option><option>Premium Picks</option><option>New Arrivals</option><option>Trending Now</option></select><label>Type</label><select id="typeFilter"><option>All</option><option>Tops</option><option>Dresses</option><option>Jeans</option><option>Shirts</option><option>Co-ord Sets</option><option>Footwear</option></select><label>Size</label><div class="checks"><label><input type="checkbox" value="S" class="size"> S</label><label><input type="checkbox" value="M" class="size"> M</label><label><input type="checkbox" value="L" class="size"> L</label><label><input type="checkbox" value="XL" class="size"> XL</label></div><label>Max price: ₹<span id="priceValue">3000</span></label><input id="priceFilter" type="range" min="300" max="3000" value="3000" step="100"><label>Sort</label><select id="sortFilter"><option value="popular">Popular</option><option value="new">Newest</option><option value="low">Price: Low to High</option><option value="high">Price: High to Low</option></select></aside>
+      <section class="catalog"><div class="catalog-head"><div><p class="muted">StyleNest Collection</p><h2 id="catalogTitle">Trending for you</h2></div><span id="resultCount"></span></div><div id="productGrid" class="grid"></div></section>
+    </section>
+  </main>
+
+  <div id="drawer" class="drawer"><div class="drawer-panel"><div class="drawer-head"><h2>Your Cart</h2><button onclick="closeDrawer()">×</button></div><div id="cartItems"></div><div class="cart-total"><span>Total</span><b id="cartTotal">₹0</b></div><button class="primary full" onclick="openCheckout()">Proceed to Payment</button></div></div>
+
+  <div id="modal" class="modal"><div class="modal-card"><button class="close" onclick="closeModal()">×</button><div id="modalContent"></div></div></div>
+
+  <div id="checkout" class="modal"><div class="modal-card checkout-card"><button class="close" onclick="closeCheckout()">×</button><div id="checkoutContent"></div></div></div>
+
+  <footer><div><b>StyleNest</b><p>Fashion for everyone.</p></div><div><b>Payment</b><p>UPI / Scan & Pay only</p></div><div><b>Support</b><p>Easy returns • Secure checkout</p></div></footer>
+  <script src="products.js"></script><script src="app.js"></script>
+</body>
+</html>
