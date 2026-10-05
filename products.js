@@ -16,7 +16,7 @@ const boysTypes=['T-Shirts','Shirts','Jeans','Shorts','Hoodies','Joggers','Jacke
 const shoeTypes=['Sneakers','Sandals','Slippers','Sports Shoes','Casual Shoes','Heels','Flats','Loafers','Running Shoes','Boots','Mules','Wedges','Slides','Canvas Shoes','Formal Shoes','Ballet Flats','Platform Heels','Training Shoes'];
 const colors=['Pink','Black','Blue','Green','White','Purple','Beige','Red','Maroon','Yellow','Teal','Ivory'];
 let products=[]; let id=1;
-function addBatch(category,types,count,label,baseExtra=0){for(let i=0;i<count;i++){const type=types[i%types.length];const base=699+(i%18)*125+baseExtra;const old=Math.round(base*(1.35+(i%5)*0.05));products.push({id:id++,name:`${label} ${type} ${String(i+1).padStart(4,'0')}`,category,type,price:base,oldPrice:old,discount:Math.max(5,Math.round((1-base/old)*100)),rating:(4.1+(i%9)/10).toFixed(1),reviews:120+(i%97)*23,size:['S','M','L','XL'][i%4],color:colors[i%colors.length],image:IMG[i%IMG.length],new:i<30});}}
+function addBatch(category,types,count,label,baseExtra=0){for(let i=0;i<count;i++){const type=types[i%types.length];const base=699+(i%18)*125+baseExtra;const old=Math.round(base*(1.35+(i%5)*0.05));products.push({id:id++,name:`${label} ${type} ${String(i+1).padStart(4,'0')}`,category,type,price:base,oldPrice:old,discount:Math.max(5,Math.round((1-base/old)*100)),rating:(4.1+(i%9)/10).toFixed(1),reviews:120+(i%97)*23,size:['S','M','L','XL'][i%4],color:colors[i%colors.length],image: category === 'Shoes' ? IMG[4 + (i % 2)] : IMG[i % 4],new:i<30});}}
 addBatch('Women',womenTypes,10000,'Girls Trend');
 addBatch('Sarees',sareeTypes,2000,'Saree Edit',250);
 addBatch('Men',menTypes,2000,'Men Style',150);
