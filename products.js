@@ -27,7 +27,4 @@ function createImage(category, productId) {
 
   return `https://loremflickr.com/700/800/${encodeURIComponent(query)}?lock=${productId}`;
 }
-  const list = imageSets[category] || imageSets.Women;
-
-  return list[productId % list.length];
-}
+ 
