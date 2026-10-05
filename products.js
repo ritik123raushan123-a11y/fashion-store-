@@ -12,8 +12,5 @@ function createImage(category, productId) {
 
   return `https://loremflickr.com/700/800/${encodeURIComponent(query)}?lock=${productId}`;
 }
-  const query = imageQueries[category] || "fashion";
-
-  return `https://loremflickr.com/700/800/${encodeURIComponent(query)}?lock=${productId}`;
-}
+  
  
