@@ -157,7 +157,13 @@ addBatch(
 
 /* Make products available to app.js */
 
-window.seedProducts = products;
+if (typeof window !== "undefined") {
+  window.seedProducts = products;
+}
+
+if (typeof module !== "undefined") {
+  module.exports = products;
+}
 
 console.log(
   "Total products loaded:",
