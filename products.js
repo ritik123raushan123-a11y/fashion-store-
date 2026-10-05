@@ -1,171 +1,42 @@
-const imageQueries = {
-  Women: "women,fashion,dress",
-  Sarees: "saree,indian,woman",
-  Men: "men,fashion,clothing",
-  Boys: "boys,fashion,clothing",
-  Shoes: "shoes,footwear,sneakers"
-};
-
-const womenTypes = [
-  "Tops", "Dresses", "Jeans", "Co-ord Sets", "T-Shirts",
-  "Kurtis", "Jackets", "Hoodies", "Shorts", "Ethnic Wear",
-  "Bodycon Dresses", "Floral Dresses", "Party Wear", "Blazers"
-];
-
-const sareeTypes = [
-  "Banarasi Silk Saree", "Kanjivaram Silk Saree",
-  "Chanderi Silk Saree", "Chiffon Saree", "Georgette Saree",
-  "Organza Saree", "Cotton Saree", "Linen Saree",
-  "Designer Saree", "Wedding Saree", "Printed Saree"
-];
-
-const menTypes = [
-  "Shirts", "T-Shirts", "Jeans", "Hoodies", "Jackets",
-  "Polo Shirts", "Cargo Pants", "Shorts", "Sweatshirts",
-  "Kurtas", "Blazers", "Chinos", "Joggers", "Track Pants"
-];
-
-const boysTypes = [
-  "T-Shirts", "Shirts", "Jeans", "Shorts", "Hoodies",
-  "Joggers", "Jackets", "Ethnic Wear", "Cargo Pants",
-  "Sweatshirts", "School Shirts"
-];
-
-const shoeTypes = [
-  "Sneakers", "Sandals", "Slippers", "Sports Shoes",
-  "Casual Shoes", "Heels", "Flats", "Loafers",
-  "Running Shoes", "Boots", "Mules", "Wedges", "Slides"
-];
-
-const colors = [
-  "Pink", "Black", "Blue", "Green", "White",
-  "Purple", "Beige", "Red", "Maroon", "Yellow",
-  "Teal", "Ivory"
-];
-
-let products = [];
-let id = 1;
-
 function createImage(category, productId) {
-  const query = imageQueries[category] || "fashion";
-  
-  return `https://loremflickr.com/700/800/${query}?lock=${productId}`;
+
+  const imageSets = {
+
+    Women: [
+      "https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=700&q=80",
+      "https://images.unsplash.com/photo-1539008835657-9e8e9680c956?auto=format&fit=crop&w=700&q=80",
+      "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=700&q=80",
+      "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=700&q=80"
+    ],
+
+    Sarees: [
+      "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=700&q=80",
+      "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?auto=format&fit=crop&w=700&q=80",
+      "https://images.unsplash.com/photo-1583391733956-6c78276477e2?auto=format&fit=crop&w=700&q=80"
+    ],
+
+    Men: [
+      "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=700&q=80",
+      "https://images.unsplash.com/photo-1488161628813-04466f872be2?auto=format&fit=crop&w=700&q=80",
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=700&q=80",
+      "https://images.unsplash.com/photo-1516826957135-700dedea698c?auto=format&fit=crop&w=700&q=80"
+    ],
+
+    Boys: [
+      "https://images.unsplash.com/photo-1519457431-44ccd64a579b?auto=format&fit=crop&w=700&q=80",
+      "https://images.unsplash.com/photo-1503919545889-aef636e10ad4?auto=format&fit=crop&w=700&q=80",
+      "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?auto=format&fit=crop&w=700&q=80"
+    ],
+
+    Shoes: [
+      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=700&q=80",
+      "https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=700&q=80",
+      "https://images.unsplash.com/photo-1460353581641-37baddab0fa2?auto=format&fit=crop&w=700&q=80",
+      "https://images.unsplash.com/photo-1495555961986-6d4c1ecb7be3?auto=format&fit=crop&w=700&q=80"
+    ]
+  };
+
+  const list = imageSets[category] || imageSets.Women;
+
+  return list[productId % list.length];
 }
-
-function addBatch(category, types, count, label, baseExtra = 0) {
-
-  for (let i = 0; i < count; i++) {
-
-    const type = types[i % types.length];
-
-    const price = 399 + ((i * 137 + baseExtra) % 2600);
-
-    const oldPrice = Math.round(price * 2);
-
-    const discount = Math.round(
-      ((oldPrice - price) / oldPrice) * 100
-    );
-
-    const rating = (4 + ((i % 10) / 10)).toFixed(1);
-
-    const reviews = 50 + ((i * 17) % 950);
-
-    const sizeList = ["S", "M", "L", "XL"];
-
-    const size = sizeList[i % sizeList.length];
-
-    const color = colors[i % colors.length];
-
-    products.push({
-      id: id,
-
-      name: `${label} ${type} ${String(i + 1).padStart(5, "0")}`,
-
-      category: category,
-
-      type: type,
-
-      price: price,
-
-      oldPrice: oldPrice,
-
-      discount: discount,
-
-      rating: Number(rating),
-
-      reviews: reviews,
-
-      size: size,
-
-      color: color,
-
-      image: createImage(category, id)
-    });
-
-    id++;
-  }
-}
-
-
-/* ================================
-   10,000+ PRODUCTS
-================================ */
-
-addBatch(
-  "Women",
-  womenTypes,
-  3000,
-  "Women Style",
-  100
-);
-
-addBatch(
-  "Sarees",
-  sareeTypes,
-  2000,
-  "Saree Collection",
-  250
-);
-
-addBatch(
-  "Men",
-  menTypes,
-  2500,
-  "Men Style",
-  150
-);
-
-addBatch(
-  "Boys",
-  boysTypes,
-  1500,
-  "Boys Style",
-  200
-);
-
-addBatch(
-  "Shoes",
-  shoeTypes,
-  1500,
-  "Shoe Collection",
-  400
-);
-
-
-/* Total = 10,500 products */
-
-
-/* Make products available to app.js */
-
-if (typeof window !== "undefined") {
-  window.seedProducts = products;
-}
-
-if (typeof module !== "undefined") {
-  module.exports = products;
-}
-
-console.log(
-  "Total products loaded:",
-  products.length
-);
